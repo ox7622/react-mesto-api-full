@@ -1,0 +1,6 @@
+.popup__image_ok {
+    background-image: url(../../../../images/ok.svg);
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+}

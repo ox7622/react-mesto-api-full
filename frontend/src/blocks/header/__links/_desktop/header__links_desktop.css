@@ -1,0 +1,12 @@
+.header__links_desktop {
+    visibility: visible;
+    opacity: 1;
+
+}
+
+@media screen and (max-width: 568px) {
+    .header__links_desktop {
+        visibility: hidden;
+    }
+    
+}

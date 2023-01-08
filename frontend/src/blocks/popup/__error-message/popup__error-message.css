@@ -1,0 +1,5 @@
+.popup__error-message {
+    position: relative;
+    top: -23px;
+    height: 0;
+}

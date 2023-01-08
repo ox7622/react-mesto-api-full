@@ -1,0 +1,7 @@
+.card__delete_hide {
+    opacity: 0;
+}
+
+.card__delete_hide:hover {
+    opacity: 0;
+}

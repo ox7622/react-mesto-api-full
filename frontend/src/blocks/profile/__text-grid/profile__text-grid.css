@@ -1,0 +1,15 @@
+.profile__text-grid {
+ display: grid;
+ grid-template-columns: auto auto;
+ grid-template-rows: auto auto;
+ grid-template-areas: 
+ "name edit"
+ "role";
+}
+
+
+@media screen and (max-width: 1080px) {
+    .profile__text-grid {
+        grid-template-columns: 100% 0%;
+    }
+}

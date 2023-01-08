@@ -1,0 +1,35 @@
+.profile__add-photo {
+    height: 50px;
+    border: 2px solid white;
+    padding: 14px 70px;
+    margin: 68px 0 auto auto;
+    box-sizing: border-box;
+    justify-self: flex-end;
+    background-color: transparent;
+    background: url(../../../images/add.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 2px;
+    width: 150px;
+}
+
+@media screen and (max-width:1090px) {
+    .profile__add-photo {
+        margin: 36px 0;
+        justify-self: center;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:568px) {
+    .profile__add-photo {
+        margin: 0 0 36px 0;
+        background-size: 16px;
+    }
+}
+
+.profile__add-photo:hover {
+    opacity: .6;
+    transition: opacity .5s ease-in;
+    cursor: pointer;
+}

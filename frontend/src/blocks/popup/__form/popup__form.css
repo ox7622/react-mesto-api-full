@@ -1,0 +1,7 @@
+.popup__form {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 0;
+}
