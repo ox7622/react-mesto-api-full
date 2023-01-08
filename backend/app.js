@@ -16,12 +16,12 @@ const { validateCreateUser } = require('./middlewares/validateCreateUser');
 
 mongoose.set('strictQuery', true);
 // Слушаем 3000 порт
-// const { PORT = 3000, DB_LINK = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
+const { PORT = 3000, DB_LINK = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 
 const app = express();
 
 // подключаемся к серверу mongo
-mongoose.connect(process.env.DB_LINK, {
+mongoose.connect(DB_LINK, {
   useNewUrlParser: true,
 }, () => {
   console.log('Connected to Mongo db');
@@ -41,7 +41,7 @@ app.use(errors());
 app.all('/*', (req, res) => res.status(404).json({ message: 'Страница не существует' }));
 app.use(errorHandler);
 
-app.listen(process.env.PORT, () => {
+app.listen(PORT, () => {
   // Если всё работает, консоль покажет, какой порт приложение слушает
-  console.log(`App listening on port ${process.env.PORT}`);
+  console.log(`App listening on port ${PORT}`);
 });
