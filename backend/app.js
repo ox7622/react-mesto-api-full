@@ -31,7 +31,7 @@ mongoose.connect(DB_LINK, {
 app.use(express.json());
 app.use(requestLogger);
 
-app.use(express.static(path.join(__dirname, '/frontend'))); // теперь клиент имеет доступ только к публичным файлам
+app.use(express.static(path.join(__dirname, '../frontend'))); // теперь клиент имеет доступ только к публичным файлам
 
 // Массив доменов, с которых разрешены кросс-доменные запросы
 const allowedCors = [
