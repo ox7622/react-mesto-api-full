@@ -109,6 +109,7 @@ module.exports.updateAvatar = async (req, res, next) => {
 
 module.exports.login = async (req, res, next) => {
   const { email, password } = req.body;
+  console.log(password);
   try {
     const user = await User.findOne({ email }).select('+password');
     if (!user) {
