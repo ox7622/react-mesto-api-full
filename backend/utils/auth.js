@@ -1,11 +1,11 @@
 /* eslint-disable consistent-return */
 const jwt = require('jsonwebtoken');
 
-const { TOKEN = 'mytokendonkey' } = process.env;
+// const { TOKEN = 'mytokendonkey' } = process.env;
 const LoginError = require('../errors/LoginError');
 
 module.exports.createToken = (user) => {
-  const token = jwt.sign({ _id: user._id }, TOKEN, { expiresIn: '7d' });
+  const token = jwt.sign({ _id: user._id }, process.env.TOKEN, { expiresIn: '7d' });
   return token;
 };
 

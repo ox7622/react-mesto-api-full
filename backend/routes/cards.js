@@ -9,13 +9,13 @@ module.exports = routerCard;
 
 routerCard.get('/', celebrate({
   headers: Joi.object().keys({
-    authorization: Joi.string().required(),
+    cookie: Joi.string().required(),
   }).unknown(true),
 }), getCards);
 
 routerCard.post('/', celebrate({
   headers: Joi.object().keys({
-    authorization: Joi.string().required(),
+    cookie: Joi.string().required(),
   }).unknown(true),
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
@@ -26,7 +26,7 @@ routerCard.post('/', celebrate({
 
 routerCard.delete('/:id', celebrate({
   headers: Joi.object().keys({
-    authorization: Joi.string().required(),
+    cookie: Joi.string().required(),
   }).unknown(true),
   params: Joi.object().keys({
     id: Joi.string().hex().length(24).required(),
@@ -35,7 +35,7 @@ routerCard.delete('/:id', celebrate({
 
 routerCard.put('/:id/likes', celebrate({
   headers: Joi.object().keys({
-    authorization: Joi.string().required(),
+    cookie: Joi.string().required(),
   }).unknown(true),
   params: Joi.object().keys({
     id: Joi.string().hex().length(24).required(),
@@ -44,7 +44,7 @@ routerCard.put('/:id/likes', celebrate({
 
 routerCard.delete('/:id/likes', celebrate({
   headers: Joi.object().keys({
-    authorization: Joi.string().required(),
+    cookie: Joi.string().required(),
   }).unknown(true),
   params: Joi.object().keys({
     id: Joi.string().hex().length(24).required(),

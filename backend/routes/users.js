@@ -8,19 +8,19 @@ module.exports = routerUser;
 
 routerUser.get('/', celebrate({
   headers: Joi.object().keys({
-    authorization: Joi.string().required(),
+    cookie: Joi.string().required(),
   }).unknown(true),
 }), getUsers);
 
 routerUser.get('/me', celebrate({
   headers: Joi.object().keys({
-    authorization: Joi.string().required(),
+    cookie: Joi.string().required(),
   }).unknown(true),
 }), getProfile);
 
 routerUser.patch('/me', celebrate({
   headers: Joi.object().keys({
-    authorization: Joi.string().required(),
+    cookie: Joi.string().required(),
   }).unknown(true),
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
@@ -30,7 +30,7 @@ routerUser.patch('/me', celebrate({
 
 routerUser.patch('/me/avatar', celebrate({
   headers: Joi.object().keys({
-    authorization: Joi.string().required(),
+    cookie: Joi.string().required(),
   }).unknown(true),
   body: Joi.object().keys({
     avatar: Joi.string().required()
@@ -40,7 +40,7 @@ routerUser.patch('/me/avatar', celebrate({
 
 routerUser.get('/:id', celebrate({
   headers: Joi.object().keys({
-    authorization: Joi.string().required(),
+    cookie: Joi.string().required(),
   }).unknown(true),
   params: Joi.object().keys({
     id: Joi.string().hex().length(24).required(),

@@ -1,7 +1,7 @@
 const allowedCors = [
-  'https://praktikum.tk',
-  'http://praktikum.tk',
-  'localhost:3000',
+  'https://ox7622.nomoredomains.club/',
+  'http://ox7622.nomoredomains.club/',
+  'http://localhost:3000',
 ];
 
 module.exports.cors = (req, res, next) => {
@@ -9,6 +9,7 @@ module.exports.cors = (req, res, next) => {
   // проверяем, что источник запроса есть среди разрешённых
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Credentials', true);
   }
   const { method } = req; // Сохраняем тип запроса (HTTP-метод) в соответствующую переменную
 
@@ -22,6 +23,7 @@ module.exports.cors = (req, res, next) => {
     // разрешаем кросс-доменные запросы с этими заголовками
     res.header('Access-Control-Allow-Headers', requestHeaders);
     // завершаем обработку запроса и возвращаем результат клиенту
+    res.header('Access-Control-Allow-Credentials', true);
     return res.end();
   }
 

@@ -57,15 +57,15 @@ module.exports.likeCard = async (req, res, next) => {
   const ownerId = decodeToken(req.user);
   const { id } = req.params;
   try {
-    const setLike = await Card.findByIdAndUpdate(
+    const card = await Card.findByIdAndUpdate(
       id,
       { $addToSet: { likes: ownerId } }, // добавить _id в массив, если его там нет
       { new: true },
     );
-    if (!setLike) {
+    if (!card) {
       throw new NotFoundError('Такой карточки нет');
     }
-    return res.status(status200).json({ message: 'Лайк поставлен' });
+    return res.status(status200).json(card);
   } catch (err) {
     if (err.name === 'ValidationError' || err.name === 'CastError') {
       return next(new BadRequestError('Ошибка валидации данных id карточки'));
@@ -78,15 +78,15 @@ module.exports.dislikeCard = async (req, res, next) => {
   const ownerId = decodeToken(req.user);
   const { id } = req.params;
   try {
-    const unlike = await Card.findByIdAndUpdate(
+    const card = await Card.findByIdAndUpdate(
       id,
       { $pull: { likes: ownerId._id } },
       { new: true },
     );
-    if (!unlike) {
+    if (!card) {
       throw new NotFoundError('Такой карточки нет');
     }
-    return res.status(status200).json({ message: 'Лайк снят' });
+    return res.status(status200).json(card);
   } catch (err) {
     if (err.name === 'ValidationError' || err.name === 'CastError') {
       return next(new BadRequestError('Ошибка валидации данных id карточки'));
