@@ -22,8 +22,12 @@ mongoose.set('strictQuery', true);
 // const { PORT = 3000, DB_LINK = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 
 const app = express();
+app.use(express.json());
 
-app.use(cors);
+app.use(cors({
+  origin: ['https://ox7622.nomoredomains.club',
+    'http://ox7622.nomoredomains.club'],
+}));
 app.use(cookieParser());
 
 // подключаемся к серверу mongo
@@ -33,7 +37,7 @@ mongoose.connect(process.env.DB_LINK, {
   console.log('Connected to Mongo db');
 });
 
-app.use(express.json());
+
 app.use(requestLogger);
 
 app.post('/signin', validateLogin, login);
