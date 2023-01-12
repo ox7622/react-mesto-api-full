@@ -117,7 +117,7 @@ module.exports.login = async (req, res, next) => {
     const result = await bcrypt.compare(password, user.password);
     if (result) {
       const token = createToken(user);
-      return res.cookie('token', token, {
+      return res.header('Access-Control-Allow-Origin:*').cookie('token', token, {
         httpOnly: true,
       }).status(status200).json({ message: 'Вы успешно вошли' });
     }
