@@ -5,7 +5,8 @@ const { errors } = require('celebrate');
 const mongoose = require('mongoose');
 
 const cookieParser = require('cookie-parser');
-const { cors } = require('./middlewares/cors');
+//const cors = require('cors');
+const {cors} =  require('./middlewares/cors')
 const { errorLogger, requestLogger } = require('./middlewares/logger');
 
 const { errorHandler } = require('./middlewares/errorHandler');
@@ -36,7 +37,6 @@ mongoose.connect(process.env.DB_LINK, {
 }, () => {
   console.log('Connected to Mongo db');
 });
-
 
 app.use(requestLogger);
 
