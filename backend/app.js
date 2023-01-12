@@ -5,8 +5,8 @@ const { errors } = require('celebrate');
 const mongoose = require('mongoose');
 
 const cookieParser = require('cookie-parser');
-//const cors = require('cors');
-const { cors } = require('./middlewares/cors');
+const cors = require('cors');
+//const { cors } = require('./middlewares/cors');
 const { errorLogger, requestLogger } = require('./middlewares/logger');
 
 const { errorHandler } = require('./middlewares/errorHandler');
@@ -25,7 +25,8 @@ mongoose.set('strictQuery', true);
 const app = express();
 app.use(express.json());
 
-app.use(cors);
+app.use(cors());
+app.options('*', cors());
 app.use(cookieParser());
 
 // подключаемся к серверу mongo
