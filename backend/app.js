@@ -24,9 +24,7 @@ mongoose.set('strictQuery', true);
 
 const app = express();
 app.use(express.json());
-// app.use(cors({
-//   origin: '*',
-// }));
+
 app.use(cors());
 app.use(cookieParser());
 
@@ -36,7 +34,6 @@ mongoose.connect(process.env.DB_LINK, {
 }, () => {
   console.log('Connected to Mongo db');
 });
-
 
 app.use(requestLogger);
 

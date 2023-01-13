@@ -109,6 +109,7 @@ module.exports.updateAvatar = async (req, res, next) => {
 
 module.exports.login = async (req, res, next) => {
   const { email, password } = req.body;
+
   try {
     const user = await User.findOne({ email }).select('+password');
     if (!user) {
@@ -119,6 +120,8 @@ module.exports.login = async (req, res, next) => {
       const token = createToken(user);
       return res.header('Access-Control-Allow-Origin:*').cookie('token', token, {
         httpOnly: true,
+        sameSite: 'None',
+        secure: true,
       }).status(status200).json({ message: 'Вы успешно вошли' });
     }
     throw new LoginError('Неправильный логин или пароль');
