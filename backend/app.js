@@ -5,8 +5,8 @@ const { errors } = require('celebrate');
 const mongoose = require('mongoose');
 
 const cookieParser = require('cookie-parser');
-//const { cors } = require('./middlewares/cors');
-const cors = require('cors');
+const { cors } = require('./middlewares/cors');
+//const cors = require('cors');
 const { errorLogger, requestLogger } = require('./middlewares/logger');
 
 const { errorHandler } = require('./middlewares/errorHandler');
