@@ -4,10 +4,9 @@ const allowedCors = [
   'http://localhost:3000',
 ];
 
-function cors(req, res, next) {
+module.exports.cors = (req, res, next) => {
   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
   // проверяем, что источник запроса есть среди разрешённых
-
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
     res.header('Access-Control-Allow-Credentials', true);
@@ -25,11 +24,8 @@ function cors(req, res, next) {
     res.header('Access-Control-Allow-Headers', requestHeaders);
     // завершаем обработку запроса и возвращаем результат клиенту
     res.header('Access-Control-Allow-Credentials', true);
-    res.header('Access-Control-Max-Age', 600);
     return res.end();
   }
 
   next();
 };
-
-module.exports = { cors };
