@@ -1,7 +1,6 @@
 /* eslint-disable consistent-return */
 const jwt = require('jsonwebtoken');
 
-// const { TOKEN = 'mytokendonkey' } = process.env;
 const LoginError = require('../errors/LoginError');
 
 module.exports.checkToken = (req, res, next) => {
