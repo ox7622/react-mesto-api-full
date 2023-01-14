@@ -26,8 +26,9 @@ const app = express();
 app.use(express.json());
 
 app.use(cors);
-app.use(cookieParser());
 app.use(helmet());
+app.use(cookieParser());
+
 // подключаемся к серверу mongo
 mongoose.connect(process.env.DB_LINK, {
   useNewUrlParser: true,
