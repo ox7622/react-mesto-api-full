@@ -120,10 +120,9 @@ module.exports.login = async (req, res, next) => {
       const token = createToken(user);
       return res.cookie('token', token, {
         httpOnly: true,
-        sameSite: 'None',
+        sameSite: true,
         secure: true,
         maxAge: 2 * 60 * 60 * 1000,
-        domain: '.ox7622.nomoredomains.club',
       }).status(status200).json({ message: 'Вы успешно вошли' });
     }
     throw new LoginError('Неправильный логин или пароль');
