@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const { errors } = require('celebrate');
 const mongoose = require('mongoose');
-
+const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const { cors } = require('./middlewares/cors');
 //const cors = require('cors');
@@ -27,7 +27,7 @@ app.use(express.json());
 
 app.use(cors);
 app.use(cookieParser());
-
+app.use(helmet());
 // подключаемся к серверу mongo
 mongoose.connect(process.env.DB_LINK, {
   useNewUrlParser: true,
