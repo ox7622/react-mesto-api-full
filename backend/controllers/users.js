@@ -118,12 +118,13 @@ module.exports.login = async (req, res, next) => {
     const result = await bcrypt.compare(password, user.password);
     if (result) {
       const token = createToken(user);
-      return res.status(status200).json({ message: 'Вы успешно вошли' }).cookie('token', token, {
+      res.cookie('token', token, {
         httpOnly: true,
         sameSite: 'None',
         secure: true,
         maxAge: 2 * 60 * 60 * 1000,
       });
+      return res.status(status200).json({ message: 'Вы успешно вошли' });
     }
     throw new LoginError('Неправильный логин или пароль');
   } catch (err) {
