@@ -11,14 +11,14 @@ module.exports.checkToken = (req, res, next) => {
     }
     try {
       console.log(process.env.TOKEN, 'process.env.TOKEN');
-      jwt.verify(authData, process.env.TOKEN);
+      const verified = jwt.verify(authData, process.env.TOKEN);
       console.log(jwt.verify(authData, process.env.TOKEN), 'verify');
+      req.user = verified._id;
+      console.log(req.user);
+      next();
     } catch (err) {
       return next(new LoginError('Пользователь не авторизован'));
     }
-    req.user = authData;
-    console.log(req.user);
-    next();
   }
   return next(new Error500('нет кук'));
 };
