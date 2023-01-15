@@ -6,7 +6,6 @@ const Error500 = require('../errors/Error500');
 module.exports.checkToken = (req, res, next) => {
   if (process.env.NODE_ENV === 'production') {
     const authData = req.cookies.token;
-    console.log(req, 'запрос');
     console.log(req.cookies, 'cookies');
     if (!authData || authData === undefined) {
       throw new LoginError('Пользователь не авторизован');
