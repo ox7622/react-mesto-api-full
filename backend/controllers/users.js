@@ -120,7 +120,7 @@ module.exports.login = async (req, res, next) => {
       const token = createToken(user);
       return res.cookie('token', token, {
         httpOnly: true,
-        sameSite: true,
+        // sameSite: true,
         secure: true,
         maxAge: 2 * 60 * 60 * 1000,
       }).status(status200).json({ message: 'Вы успешно вошли' });
