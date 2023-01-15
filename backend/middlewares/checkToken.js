@@ -10,6 +10,7 @@ module.exports.checkToken = (req, res, next) => {
       throw new LoginError('Пользователь не авторизован');
     }
     try {
+      console.log(process.env.TOKEN, 'process.env.TOKEN');
       jwt.verify(authData, process.env.TOKEN);
     } catch (err) {
       return next(new LoginError('Пользователь не авторизован'));
