@@ -143,7 +143,7 @@ module.exports.getProfile = async (req, res, next) => {
       throw new NotFoundError('Такого пользователя в базе нет');
     }
     console.log(user, '-user');
-    return res.status(status200).json(user);
+    return res.status(status200).send(user);
   } catch (err) {
     if (err.name === 'ValidationError' || err.name === 'CastError') {
       return next(new BadRequestError('Ошибка валидации данных ссылки на аватар пользователя'));
