@@ -136,8 +136,9 @@ module.exports.login = async (req, res, next) => {
 
 module.exports.getProfile = async (req, res, next) => {
   const userId = decodeToken(req.user);
+  console.log(userId);
   try {
-    const user = await User.findById(userId);
+    const user = await User.findById({ _id: userId });
     if (!user) {
       throw new NotFoundError('Такого пользователя в базе нет');
     }
