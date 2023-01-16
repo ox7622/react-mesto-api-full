@@ -41,7 +41,7 @@ module.exports.deleteCard = async (req, res, next) => {
     if (!card) {
       throw new NotFoundError('Карточка не найдена');
     }
-    if (card.owner.toString() === ownerId.toString()) {
+    if (card.owner.toString() === ownerId._id.toString()) {
       await Card.findByIdAndRemove(id);
       return res.status(status200).json({ message: 'Карточка удалена' });
     }
@@ -60,7 +60,7 @@ module.exports.likeCard = async (req, res, next) => {
   try {
     const card = await Card.findByIdAndUpdate(
       id,
-      { $addToSet: { likes: ownerId } }, // добавить _id в массив, если его там нет
+      { $addToSet: { likes: ownerId._id } }, // добавить _id в массив, если его там нет
       { new: true },
     );
     if (!card) {
@@ -81,7 +81,7 @@ module.exports.dislikeCard = async (req, res, next) => {
   try {
     const card = await Card.findByIdAndUpdate(
       id,
-      { $pull: { likes: ownerId } },
+      { $pull: { likes: ownerId._id } },
       { new: true },
     );
     if (!card) {

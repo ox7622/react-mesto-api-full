@@ -15,7 +15,6 @@ module.exports.checkToken = (req, res, next) => {
         req.user = authData;
         next();
       }
-      console.log(verified, 'verified');
     } catch (err) {
       return next(new LoginError('Пользователь не авторизован'));
     }
