@@ -10,6 +10,7 @@ module.exports.createToken = (user) => {
 };
 
 module.exports.decodeToken = (token, next) => {
+  console.log(token, '-token');
   if (!token) {
     throw new LoginError('Пользователь не авторизован');
   }
