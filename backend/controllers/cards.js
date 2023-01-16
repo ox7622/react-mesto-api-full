@@ -11,6 +11,7 @@ const AccessError = require('../errors/AccessError');
 
 module.exports.getCards = async (req, res, next) => {
   try {
+    console.log(req.user, 'req user');
     const cards = await Card.find({});
     return res.status(status200).json(cards);
   } catch (err) {
@@ -40,7 +41,7 @@ module.exports.deleteCard = async (req, res, next) => {
     if (!card) {
       throw new NotFoundError('Карточка не найдена');
     }
-    if (card.owner.toString() === ownerId._id.toString()) {
+    if (card.owner.toString() === ownerId.toString()) {
       await Card.findByIdAndRemove(id);
       return res.status(status200).json({ message: 'Карточка удалена' });
     }
@@ -80,7 +81,7 @@ module.exports.dislikeCard = async (req, res, next) => {
   try {
     const card = await Card.findByIdAndUpdate(
       id,
-      { $pull: { likes: ownerId._id } },
+      { $pull: { likes: ownerId } },
       { new: true },
     );
     if (!card) {

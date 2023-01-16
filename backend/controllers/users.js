@@ -66,7 +66,7 @@ module.exports.updateUser = async (req, res, next) => {
   const { name, about } = req.body;
   try {
     const user = await User.findByIdAndUpdate(
-      userId._id,
+      userId,
       { name, about },
       {
         new: true, // обработчик then получит на вход обновлённую запись
@@ -90,7 +90,7 @@ module.exports.updateAvatar = async (req, res, next) => {
       throw new NotFoundError('Пользователь не найден');
     }
     const user = await User.findByIdAndUpdate(
-      userId._id,
+      userId,
       { avatar },
       {
         new: true, // обработчик then получит на вход обновлённую запись
@@ -137,7 +137,7 @@ module.exports.login = async (req, res, next) => {
 module.exports.getProfile = async (req, res, next) => {
   const userId = decodeToken(req.user);
   try {
-    const user = await User.findById(userId._id);
+    const user = await User.findById(userId);
     if (!user) {
       throw new NotFoundError('Такого пользователя в базе нет');
     }

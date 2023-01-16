@@ -8,12 +8,12 @@ const {
 module.exports = routerCard;
 
 routerCard.get('/',
-//celebrate({
- // headers: Joi.object().keys({
- //   cookie: Joi.string().required(),
- // }).unknown(true),
-//}),
- getCards);
+  celebrate({
+    headers: Joi.object().keys({
+      cookie: Joi.string().required(),
+    }).unknown(true),
+  }),
+  getCards);
 
 routerCard.post('/', celebrate({
   headers: Joi.object().keys({
