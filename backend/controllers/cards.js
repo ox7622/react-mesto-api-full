@@ -13,7 +13,7 @@ module.exports.getCards = async (req, res, next) => {
   try {
     console.log(req.user, 'req user');
     const cards = await Card.find({});
-    return res.status(status200).send(cards);
+    return res.send(cards);
   } catch (err) {
     return next(err);
   }
