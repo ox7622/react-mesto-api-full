@@ -136,7 +136,7 @@ module.exports.login = async (req, res, next) => {
 
 module.exports.getProfile = async (req, res, next) => {
   const userId = decodeToken(req.user);
-  console.log(userId);
+  console.log(userId, '- user iD', req.user, '- req.user');
   try {
     const user = await User.findById({ _id: userId });
     if (!user) {
