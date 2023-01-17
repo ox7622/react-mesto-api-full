@@ -13,7 +13,7 @@ module.exports.checkToken = (req, res, next) => {
       const verified = jwt.verify(authData, process.env.TOKEN);
       if (verified) {
         req.user = authData;
-        next();
+        return req.user;
       }
     } catch (err) {
       return next(new LoginError('Пользователь не авторизован'));
