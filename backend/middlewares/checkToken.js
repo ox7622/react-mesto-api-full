@@ -19,7 +19,7 @@ module.exports.checkToken = (req, res, next) => {
     console.log(verified, '-prod');
     console.log(authData, '-authdata');
     if (verified) {
-      req.user = authData;
+      req.user = verified;
       console.log(req.user, '-req.user');
       next();
     }
