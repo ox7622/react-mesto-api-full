@@ -11,9 +11,7 @@ const AccessError = require('../errors/AccessError');
 
 module.exports.getCards = async (req, res, next) => {
   try {
-    console.log(req.user, 'req user');
     const cards = await Card.find({});
-    console.log(cards);
     return res.status(status200).json(cards);
   } catch (err) {
     return next(err);
