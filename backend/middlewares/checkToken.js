@@ -10,7 +10,7 @@ module.exports.checkToken = (req, res, next) => {
     throw new LoginError('Пользователь не авторизован');
   }
   try {
-    let verified = {};
+    let verified;
     if (process.env.NODE_ENV !== 'production') {
       verified = jwt.verify(authData, TOKEN);
       console.log(verified, '-dev');
