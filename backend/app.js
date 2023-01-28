@@ -65,7 +65,7 @@ app.use(errorHandler);
 if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {
     // Если всё работает, консоль покажет, какой порт приложение слушает
-    console.log(`App listening on port ${process.env.PORT}`);
+    console.log(`App listening on port ${PORT}`);
   });
 } else {
   app.listen(process.env.PORT, () => {

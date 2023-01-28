@@ -18,11 +18,10 @@ module.exports.checkToken = (req, res, next) => {
     verified = jwt.verify(authData, process.env.TOKEN);
     console.log(verified, '-prod');
     console.log(authData, '-authdata');
-    if (verified) {
-      req.user = verified;
-      console.log(req.user, '-req.user');
-      next();
-    }
+    req.user = verified;
+    console.log(req.user, '-req.user');
+    next();
+
   } catch (err) {
     return next(new LoginError('Пользователь не авторизован'));
   }
