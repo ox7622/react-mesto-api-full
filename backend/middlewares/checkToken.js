@@ -14,10 +14,9 @@ module.exports.checkToken = (req, res, next) => {
     if (process.env.NODE_ENV !== 'production') {
       verified = jwt.verify(authData, TOKEN);
       console.log(verified, '-dev');
-    } else {
-      verified = jwt.verify(authData, process.env.TOKEN);
-      console.log(verified, '-prod');
     }
+    verified = jwt.verify(authData, process.env.TOKEN);
+    console.log(verified, '-prod');
     console.log(authData, '-authdata');
     if (verified) {
       req.user = authData;
