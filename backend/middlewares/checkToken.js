@@ -6,6 +6,7 @@ const TOKEN = require('../constants/env');
 
 module.exports.checkToken = (req, res, next) => {
   const authData = req.cookies.token;
+
   if (!authData || authData === undefined) {
     throw new LoginError('Пользователь не авторизован');
   }
@@ -21,7 +22,6 @@ module.exports.checkToken = (req, res, next) => {
     req.user = verified;
     console.log(req.user, '-req.user');
     next();
-
   } catch (err) {
     return next(new LoginError('Пользователь не авторизован'));
   }
