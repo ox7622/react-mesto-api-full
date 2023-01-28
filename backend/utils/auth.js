@@ -8,8 +8,10 @@ module.exports.createToken = (user) => {
   let token = '';
   if (process.env.NODE_ENV !== 'production') {
     token = jwt.sign({ _id: user._id }, TOKEN, { expiresIn: '7d' });
+    console.log(token);
   } else {
     token = jwt.sign({ _id: user._id }, process.env.TOKEN, { expiresIn: '7d' });
+    console.log(token, '-prod');
   }
   return token;
 };
