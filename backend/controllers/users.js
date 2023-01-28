@@ -118,7 +118,7 @@ module.exports.login = async (req, res, next) => {
     const result = await bcrypt.compare(password, user.password);
     if (result) {
       const token = createToken(user);
-      console.log(token, 'token in login');
+
       return res.cookie('token', token, {
         httpOnly: true,
         sameSite: 'None',
@@ -137,13 +137,11 @@ module.exports.login = async (req, res, next) => {
 
 module.exports.getProfile = async (req, res, next) => {
   const userId = decodeToken(req.user);
-  console.log(userId, '- user iD', req.user, '- req.user');
   try {
     const user = await User.findById(userId._id);
     if (!user) {
       throw new NotFoundError('Такого пользователя в базе нет');
     }
-    console.log(user, '-user');
     return res.status(status200).json(user);
   } catch (err) {
     if (err.name === 'ValidationError' || err.name === 'CastError') {

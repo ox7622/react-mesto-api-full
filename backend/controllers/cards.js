@@ -10,7 +10,6 @@ const NotFoundError = require('../errors/NotFoundError');
 const AccessError = require('../errors/AccessError');
 
 module.exports.getCards = async (req, res, next) => {
-  console.log(req.user, '-req user in getcards')
   try {
     const cards = await Card.find({});
     return res.status(status200).json(cards);
