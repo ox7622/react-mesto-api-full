@@ -18,8 +18,10 @@ module.exports.checkToken = (req, res, next) => {
       verified = jwt.verify(authData, process.env.TOKEN);
       console.log(verified, '-prod');
     }
+    console.log(authData, '-authdata');
     if (verified) {
       req.user = authData;
+      console.log(req.user, '-req.user');
       next();
     }
   } catch (err) {
