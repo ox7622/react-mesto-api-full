@@ -59,7 +59,7 @@ app.use('/cards', checkToken, routerCard);
 
 app.use(errorLogger);
 app.use(errors());
-//app.all('/*', (req, res) => res.status(404).json({ message: 'Страница не существует' }));
+app.all('/*', (req, res) => res.status(404).json({ message: 'Страница не существует' }));
 app.use(errorHandler);
 
 if (process.env.NODE_ENV !== 'production') {

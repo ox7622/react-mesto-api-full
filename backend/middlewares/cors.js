@@ -4,6 +4,7 @@ const allowedCors = [
   'http://ox7622.nomoredomains.club',
   'http://localhost:3000',
   'localhost:3000',
+  'http://62.84.127.162',
 ];
 
 module.exports.cors = (req, res, next) => {
