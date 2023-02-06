@@ -123,7 +123,7 @@ module.exports.login = async (req, res, next) => {
         httpOnly: true,
         sameSite: 'None',
         secure: true,
-        maxAge: 2 * 600 * 600 * 1000,
+        expires: new Date(Date.now() + (30 * 24 * 3600000)),
       }).status(status200).json({ message: 'Вы успешно вошли' });
     }
     throw new LoginError('Неправильный логин или пароль');
