@@ -2,7 +2,7 @@ const routerUser = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const {
   getUsers, findUser, updateUser, updateAvatar, getProfile,
-} = require('../../controllers/users');
+} = require('../controllers/users');
 
 module.exports = routerUser;
 

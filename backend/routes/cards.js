@@ -3,17 +3,19 @@ const routerCard = require('express').Router();
 
 const {
   getCards, createCard, deleteCard, likeCard, dislikeCard,
-} = require('../../controllers/cards');
+} = require('../controllers/cards');
 
 module.exports = routerCard;
 
-routerCard.get('/',
+routerCard.get(
+  '/',
   celebrate({
     headers: Joi.object().keys({
       cookie: Joi.string().required(),
     }).unknown(true),
   }),
-  getCards);
+  getCards,
+);
 
 routerCard.post('/', celebrate({
   headers: Joi.object().keys({
