@@ -9,7 +9,7 @@ const NotFoundError = require('../errors/NotFoundError');
 const AccountExistsError = require('../errors/AccountExistsError');
 const LoginError = require('../errors/LoginError');
 
-const cookieDomain = cookieDomain;
+const cookieDomain = '.ox7622.nomoredomains.club';
 
 module.exports.createUser = async (req, res, next) => {
   try {
