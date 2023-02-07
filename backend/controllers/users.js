@@ -124,6 +124,7 @@ module.exports.login = async (req, res, next) => {
         sameSite: 'None',
         secure: true,
         expires: new Date(Date.now() + (30 * 24 * 3600000)),
+        domain: '.ox7622.nomoredomains.club',
       }).status(status200).json({ message: 'Вы успешно вошли' });
     }
     throw new LoginError('Неправильный логин или пароль');
