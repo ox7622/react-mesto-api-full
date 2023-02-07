@@ -142,6 +142,9 @@ module.exports.login = async (req, res, next) => {
 module.exports.logout = async (req, res, next) => {
   try {
     return res.clearCookie('token', {
+      httpOnly: true,
+      sameSite: 'None',
+      secure: true,
       maxAge: 30 * 24 * 3600000,
       domain: '.ox7622.nomoredomains.club',
     }).clearCookie('refresh', {
