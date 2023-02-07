@@ -9,6 +9,8 @@ const NotFoundError = require('../errors/NotFoundError');
 const AccountExistsError = require('../errors/AccountExistsError');
 const LoginError = require('../errors/LoginError');
 
+const cookieDomain = cookieDomain;
+
 module.exports.createUser = async (req, res, next) => {
   try {
     const {
@@ -124,10 +126,10 @@ module.exports.login = async (req, res, next) => {
         sameSite: 'None',
         secure: true,
         maxAge: 30 * 24 * 3600000,
-        domain: '.ox7622.nomoredomains.club',
+        domain: cookieDomain,
       }).cookie('refresh', true, {
         maxAge: 30 * 24 * 3600000,
-        domain: '.ox7622.nomoredomains.club',
+        domain: cookieDomain,
       }).status(status200).json({ message: 'Вы успешно вошли' });
     }
     throw new LoginError('Неправильный логин или пароль');
@@ -142,14 +144,11 @@ module.exports.login = async (req, res, next) => {
 module.exports.logout = async (req, res, next) => {
   try {
     return res.clearCookie('token', {
-      httpOnly: true,
-      sameSite: 'None',
-      secure: true,
-      maxAge: 30 * 24 * 3600000,
-      domain: '.ox7622.nomoredomains.club',
+      path: '/',
+      domain: cookieDomain,
     }).clearCookie('refresh', {
-      maxAge: 30 * 24 * 3600000,
-      domain: '.ox7622.nomoredomains.club',
+      path: '/',
+      domain: cookieDomain,
     }).status(status200).json({ message: 'Вы успешно вышли' });
   } catch (err) {
     return next(err);
