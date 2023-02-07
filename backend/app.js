@@ -11,14 +11,13 @@ const { errorLogger, requestLogger } = require('./middlewares/logger');
 
 const { errorHandler } = require('./middlewares/errorHandler');
 const { validateLogin } = require('./middlewares/validateLogin');
-const { login, createUser } = require('../controllers/users');
+const { login, createUser, logout } = require('./controllers/users');
 
 const { checkToken } = require('./middlewares/checkToken');
 const routerCard = require('./routes/cards');
 const routerUser = require('./routes/users');
 const { validateCreateUser } = require('./middlewares/validateCreateUser');
 const { PORT, DB_LINK } = require('./constants/env');
-const { logout } = require('./controllers/users');
 
 mongoose.set('strictQuery', true);
 
