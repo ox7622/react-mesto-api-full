@@ -1,13 +1,13 @@
-const Card = require('../models/card');
+const Card = require('../backend/models/card');
 
 const {
   status200,
-} = require('../constants/status');
+} = require('../backend/constants/status');
 
-const { decodeToken } = require('../utils/auth');
-const BadRequestError = require('../errors/BadRequestError');
-const NotFoundError = require('../errors/NotFoundError');
-const AccessError = require('../errors/AccessError');
+const { decodeToken } = require('../backend/utils/auth');
+const BadRequestError = require('../backend/errors/BadRequestError');
+const NotFoundError = require('../backend/errors/NotFoundError');
+const AccessError = require('../backend/errors/AccessError');
 
 module.exports.getCards = async (req, res, next) => {
   try {

@@ -3,7 +3,7 @@ const routerCard = require('express').Router();
 
 const {
   getCards, createCard, deleteCard, likeCard, dislikeCard,
-} = require('../controllers/cards');
+} = require('../../controllers/cards');
 
 module.exports = routerCard;
 

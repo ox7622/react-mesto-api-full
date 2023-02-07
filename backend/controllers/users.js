@@ -1,13 +1,13 @@
 const bcrypt = require('bcrypt');
-const User = require('../models/user');
+const User = require('../backend/models/user');
 const {
   status200,
-} = require('../constants/status');
-const { createToken, decodeToken } = require('../utils/auth');
-const BadRequestError = require('../errors/BadRequestError');
-const NotFoundError = require('../errors/NotFoundError');
-const AccountExistsError = require('../errors/AccountExistsError');
-const LoginError = require('../errors/LoginError');
+} = require('../backend/constants/status');
+const { createToken, decodeToken } = require('../backend/utils/auth');
+const BadRequestError = require('../backend/errors/BadRequestError');
+const NotFoundError = require('../backend/errors/NotFoundError');
+const AccountExistsError = require('../backend/errors/AccountExistsError');
+const LoginError = require('../backend/errors/LoginError');
 
 module.exports.createUser = async (req, res, next) => {
   try {
@@ -123,7 +123,10 @@ module.exports.login = async (req, res, next) => {
         httpOnly: true,
         sameSite: 'None',
         secure: true,
-        expires: new Date(Date.now() + (30 * 24 * 3600000)),
+        maxAge: 30 * 24 * 3600000,
+        domain: '.ox7622.nomoredomains.club',
+      }).cookie('refresh', true, {
+        maxAge: 30 * 24 * 3600000,
         domain: '.ox7622.nomoredomains.club',
       }).status(status200).json({ message: 'Вы успешно вошли' });
     }
@@ -132,6 +135,14 @@ module.exports.login = async (req, res, next) => {
     if (err.name === 'ValidationError' || err.name === 'CastError') {
       return next(new BadRequestError('Ошибка валидации данных ссылки на аватар пользователя'));
     }
+    return next(err);
+  }
+};
+
+module.exports.logout = async (req, res, next) => {
+  try {
+    return res.clearCookies('token').clearCookies('refresh');
+  } catch (err) {
     return next(err);
   }
 };
