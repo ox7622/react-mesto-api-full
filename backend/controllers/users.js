@@ -141,7 +141,7 @@ module.exports.login = async (req, res, next) => {
 
 module.exports.logout = async (req, res, next) => {
   try {
-    return res.status(200).clearCookie('token').clearCookie('refresh');
+    return res.clearCookie('token').clearCookie('refresh').status(status200).json({ message: 'Вы успешно вышли' });
   } catch (err) {
     return next(err);
   }
