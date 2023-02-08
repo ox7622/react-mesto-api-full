@@ -143,9 +143,9 @@ module.exports.login = async (req, res, next) => {
 
 module.exports.logout = async (req, res, next) => {
   try {
-    return res.cookie('token', {
+    return res.cookie('token','', {
       maxAge: 0,
-    }).cookie('refresh', {
+    }).cookie('refresh','', {
       maxAge: 0,
     }).status(status200).json({ message: 'Вы успешно вышли' });
   } catch (err) {
