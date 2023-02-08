@@ -143,14 +143,9 @@ module.exports.login = async (req, res, next) => {
 
 module.exports.logout = async (req, res, next) => {
   try {
-    return res.clearCookie('token', {
-      httpOnly: true,
-      sameSite: 'None',
-      secure: true,
-      domain: cookieDomain,
+    return res.cookie('token', {
       maxAge: 0,
-    }).clearCookie('refresh', {
-      domain: cookieDomain,
+    }).cookie('refresh', {
       maxAge: 0,
     }).status(status200).json({ message: 'Вы успешно вышли' });
   } catch (err) {
