@@ -148,8 +148,10 @@ module.exports.logout = async (req, res, next) => {
       sameSite: 'None',
       secure: true,
       domain: cookieDomain,
+      maxAge: 0,
     }).clearCookie('refresh', {
       domain: cookieDomain,
+      maxAge: 0,
     }).status(status200).json({ message: 'Вы успешно вышли' });
   } catch (err) {
     return next(err);
